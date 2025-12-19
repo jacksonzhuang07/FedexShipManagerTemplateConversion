@@ -88,9 +88,12 @@ def convert_data():
         # Append
         output_df = pd.concat([output_df, pd.DataFrame([new_row])], ignore_index=True)
 
+    # Ensure output has exactly the same columns as template, in order
+    output_df = output_df[template_headers]
+
     # Save
     output_df.to_csv(output_file, index=False)
-    print(f"Successfully created {output_file}")
+    print(f"Successfully created {output_file} with {len(output_df)} rows and {len(output_df.columns)} columns.")
 
 if __name__ == "__main__":
     convert_data()
